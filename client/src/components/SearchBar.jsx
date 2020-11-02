@@ -17,6 +17,7 @@ export default function SearchBar() {
 
   function handleFetchQuery() {
     dispatch(getProducts(query));
+    setQuery('');
   }
 
   return (
