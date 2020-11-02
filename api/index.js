@@ -14,6 +14,8 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use(morgan('dev'));
+
 // RUTAS
 
 server.get('/api/search', (req, res, next) => {
