@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProducts } from './../redux/actions.js';
+import { getProducts, updateCiclo } from './../redux/actions.js';
 
 export default function SearchBar() {
   // DISPATCHER
   const dispatch = useDispatch();
 
   // HOOKS
-  const [effect, setEffect] = useState(true);
   const [query, setQuery] = useState('');
 
   // HANDLERS
@@ -16,6 +15,7 @@ export default function SearchBar() {
   }
 
   function handleFetchQuery() {
+    dispatch(updateCiclo(1));
     dispatch(getProducts(query));
     setQuery('');
   }

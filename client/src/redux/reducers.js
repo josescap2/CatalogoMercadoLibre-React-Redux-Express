@@ -1,6 +1,15 @@
 const initialState = {
   // Productos a vizualizar en el catalogo
-  products: []
+  products: [],
+
+  /**
+   * Ciclo de busqueda
+   * 0: No se registra busqueda
+   * 1: Buscando
+   * 2: Resultados
+   * 3: No hay resultados
+   */
+  ciclo: 0
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -8,8 +17,19 @@ export default function rootReducer(state = initialState, action) {
     case 'GET_CATALOGO':
       return {
         ...state,
-        products: action.payload
+        products: action.payload,
+        ciclo: 2
       };
+    case 'UPDATE_CICLO':
+      return {
+        ...state,
+        ciclo: action.payload,
+      }
+    case 'NO_RESULTS':
+      return {
+        ...state,
+        ciclo: action.payload
+      }
     default:
       return state;
   }

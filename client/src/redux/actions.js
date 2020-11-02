@@ -5,6 +5,15 @@ export function getProducts(query) {
       redirect: 'follow'
     })
     .then(results => results.json())
-    .then(data => { dispatch({ type: "GET_CATALOGO", payload: data})})
+    .then(data => { 
+      if (Array.isArray(data))
+        dispatch({ type: "GET_CATALOGO", payload: data})
+      else
+        dispatch({ type: "NO_RESULTS", payload: 3});
+    })
   }
+}
+
+export function updateCiclo(number) {
+  return { type: "UPDATE_CICLO", payload: number}
 }
