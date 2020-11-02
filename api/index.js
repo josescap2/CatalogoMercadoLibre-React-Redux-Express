@@ -17,7 +17,25 @@ server.use((req, res, next) => {
 // RUTAS
 
 server.get('/api/search', (req, res, next) => {
-  res.status(200).send(req.query);
+  const { query } = req.query;
+
+  fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
+    .then(results => results.json())
+    .then(data => {
+      const products = data.results.map((e) => {
+        return {
+          title: e.title,
+          price: e.price,
+          money: e.currency_id,
+          image: e.thumbnail,
+          stock: e.available_quantity,
+          link: e.permalink,
+          condition: e.condition
+        }
+      });
+      res.status(200).json(products);
+    })
+    .catch(err => res.send(err));
 });
 
 // FIN RUTAS
