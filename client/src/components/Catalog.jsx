@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { v4 } from 'uuid';
+import ProductCard from './ProductCard.jsx';
 
 export default function Catalog() {
   // SELECTORS
-  let products = useSelector(state => state.products);
-  let ciclo = useSelector(state => state.ciclo);
+  const products = useSelector(state => state.products);
+  const ciclo = useSelector(state => state.ciclo);
+  const page = useSelector(state => state.page);
 
   return (
     <div>
@@ -17,7 +19,23 @@ export default function Catalog() {
             <span className="sr-only">Loading...</span>
           </div>
         ) : ciclo == 2 ? (
-          <h3 className="my-5 display-4">Resultados</h3>
+          <div className="container my-5">
+            <div className="row justify-content-md- row-cols-3" >
+              {
+                products.map((product, index) => (
+                  <React.Fragment>
+                    {
+                      index >= (page - 1) * 30 && index < page * 30 ? (
+                        <div className="col my-3">
+                          <ProductCard product={product}/>
+                        </div>
+                      ) : (<div></div>)
+                    }
+                  </React.Fragment>
+                ))
+              }
+            </div>
+          </div>
         ) : (
           <h3 className="my-5">Ooops! No encontramos lo que buscas, prueba algo mas!</h3>
         )

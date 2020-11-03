@@ -9,7 +9,10 @@ const initialState = {
    * 2: Resultados
    * 3: No hay resultados
    */
-  ciclo: 0
+  ciclo: 0,
+
+  // Pagina a visualizar
+  page: 1
 }
 
 export default function rootReducer(state = initialState, action) {
