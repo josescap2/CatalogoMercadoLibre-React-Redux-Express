@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const fetch = require('node-fetch');
 
+let cache = {};
+
 const server = express();
 
 server.name = 'API';
@@ -21,23 +23,29 @@ server.use(morgan('dev'));
 server.get('/api/search', (req, res, next) => {
   const { query } = req.query;
 
-  fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
-    .then(results => results.json())
-    .then(data => {
-      const products = data.results.map((e) => {
-        return {
-          title: e.title,
-          price: e.price,
-          money: e.currency_id,
-          image: e.thumbnail,
-          stock: e.available_quantity,
-          link: e.permalink,
-          condition: e.condition
-        }
-      });
-      res.status(200).json(products);
-    })
-    .catch(err => res.send(err));
+  if (cache.hasOwnProperty(query)) {
+    console.log(query, "cacheado");
+    res.status(304).json(cache[query]);
+  } else {
+    fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
+      .then(results => results.json())
+      .then(data => {
+        const products = data.results.map((e) => {
+          return {
+            title: e.title,
+            price: e.price,
+            money: e.currency_id,
+            image: e.thumbnail,
+            stock: e.available_quantity,
+            link: e.permalink,
+            condition: e.condition
+          }
+        });
+        cache[query] = products;
+        res.status(200).json(products);
+      })
+      .catch(err => res.send(err));
+  }
 });
 
 // FIN RUTAS
