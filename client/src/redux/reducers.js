@@ -12,7 +12,10 @@ const initialState = {
   ciclo: 0,
 
   // Pagina a visualizar
-  page: 1
+  page: 1,
+
+  // Numero de paginas
+  pages: 0
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -21,7 +24,8 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
-        ciclo: 2
+        ciclo: 2,
+        pages: Math.ceil(action.payload.length / 30)
       };
     case 'UPDATE_CICLO':
       return {
@@ -32,6 +36,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         ciclo: action.payload
+      }
+    case 'UPDATE_PAGE':
+      return {
+        ...state,
+        page: action.payload
       }
     default:
       return state;

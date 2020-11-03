@@ -4,16 +4,20 @@ export function getProducts(query) {
       method: 'GET',
       redirect: 'follow'
     })
-    .then(results => results.json())
-    .then(data => { 
-      if (Array.isArray(data))
-        dispatch({ type: "GET_CATALOGO", payload: data})
-      else
-        dispatch({ type: "NO_RESULTS", payload: 3});
-    })
+      .then(results => results.json())
+      .then(data => {
+        if (Array.isArray(data))
+          dispatch({ type: "GET_CATALOGO", payload: data })
+        else
+          dispatch({ type: "NO_RESULTS", payload: 3 });
+      })
   }
 }
 
 export function updateCiclo(number) {
-  return { type: "UPDATE_CICLO", payload: number}
+  return { type: "UPDATE_CICLO", payload: number }
+}
+
+export function updatePage(number) {
+  return { type: "UPDATE_PAGE", payload: number }
 }

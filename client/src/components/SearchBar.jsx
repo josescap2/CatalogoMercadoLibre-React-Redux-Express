@@ -23,16 +23,16 @@ export default function SearchBar() {
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-primary bg-primary">
-        <a className="navbar-brand text-white">Catalogo</a>
+        <a className="navbar-brand text-white" href="https://www.linkedin.com/in/josescap/" target="_blank" rel="noreferrer">Catalogo</a>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link text-white" target="_blank" href="https://github.com/josescap2">Github <span className="sr-only">(current)</span></a>
+            <a className="nav-link text-white" target="_blank" rel="noreferrer" href="https://github.com/josescap2">Github <span className="sr-only">(current)</span></a>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white" target="_blank" href="https://www.linkedin.com/in/josescap/">Linkedin</a>
+            <a className="nav-link text-white" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/josescap/">Linkedin</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white" target="_blank" href="https://www.soyhenry.com/webfullstack/">Henry</a>
+            <a className="nav-link text-white" target="_blank" rel="noreferrer" href="https://www.soyhenry.com/webfullstack/">Henry</a>
           </li>
         </ul>
         <div className="form-inline my-2 my-lg-0">

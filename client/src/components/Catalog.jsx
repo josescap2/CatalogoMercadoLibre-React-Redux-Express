@@ -12,13 +12,13 @@ export default function Catalog() {
   return (
     <div>
       {
-        ciclo == 0 ? (
+        ciclo === 0 ? (
           <h3 className="my-5 display-4">Esperando busqueda</h3>
-        ) : ciclo == 1 ? (
+        ) : ciclo === 1 ? (
           <div className="spinner-border text-dark my-5" role="status">
             <span className="sr-only">Loading...</span>
           </div>
-        ) : ciclo == 2 ? (
+        ) : ciclo === 2 ? (
           <div className="container my-5">
             <div className="row justify-content-md- row-cols-3" >
               {
@@ -27,7 +27,7 @@ export default function Catalog() {
                     {
                       index >= (page - 1) * 30 && index < page * 30 ? (
                         <div className="col my-3">
-                          <ProductCard product={product}/>
+                          <ProductCard product={product} key={ v4() }/>
                         </div>
                       ) : (<div></div>)
                     }
