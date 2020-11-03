@@ -24,7 +24,6 @@ server.get('/api/search', (req, res, next) => {
   const { query } = req.query;
 
   if (cache.hasOwnProperty(query)) {
-    console.log(query, "cacheado");
     res.status(304).json(cache[query]);
   } else {
     fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
