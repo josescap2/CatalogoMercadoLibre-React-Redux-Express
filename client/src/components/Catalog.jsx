@@ -5,7 +5,7 @@ import ProductCard from './ProductCard.jsx';
 
 export default function Catalog() {
   // SELECTORS
-  const products = useSelector(state => state.products);
+  const catalog = useSelector(state => state.catalog);
   const ciclo = useSelector(state => state.ciclo);
   const page = useSelector(state => state.page);
 
@@ -22,14 +22,14 @@ export default function Catalog() {
           <div className="container my-5">
             <div className="row justify-content-md- row-cols-3" >
               {
-                products.map((product, index) => (
+                catalog.map((product, index) => (
                   <React.Fragment>
                     {
                       index >= (page - 1) * 30 && index < page * 30 ? (
                         <div className="col my-3">
                           <ProductCard product={product} key={ v4() }/>
                         </div>
-                      ) : (<div></div>)
+                      ) : (<React.Fragment></React.Fragment>)
                     }
                   </React.Fragment>
                 ))

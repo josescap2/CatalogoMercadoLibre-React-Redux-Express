@@ -21,3 +21,7 @@ export function updateCiclo(number) {
 export function updatePage(number) {
   return { type: "UPDATE_PAGE", payload: number }
 }
+
+export function ascProducts() {
+  return { type: "ASC_PRODUCTS", payload: null}
+}

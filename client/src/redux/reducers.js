@@ -1,6 +1,9 @@
 const initialState = {
-  // Productos a vizualizar en el catalogo
+  // Productos a cargar en el catalogo
   products: [],
+
+  // Catalogo de productos a visualizar
+  catalog: [],
 
   /**
    * Ciclo de busqueda
@@ -18,12 +21,13 @@ const initialState = {
   pages: 0
 }
 
-export default function rootReducer(state = initialState, action) {
+export default function rootReducer(state = initialState, action = null) {
   switch (action.type) {
     case 'GET_CATALOGO':
       return {
         ...state,
         products: action.payload,
+        catalog: action.payload,
         ciclo: 2,
         pages: Math.ceil(action.payload.length / 30)
       };
@@ -31,16 +35,21 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         ciclo: action.payload,
-      }
+      };
     case 'NO_RESULTS':
       return {
         ...state,
         ciclo: action.payload
-      }
+      };
     case 'UPDATE_PAGE':
       return {
         ...state,
         page: action.payload
+      };
+    case 'ASC_PRODUCTS':
+      return {
+        ...state,
+        catalog: state.products.sort((curr, next) => curr.price - next.price)
       }
     default:
       return state;

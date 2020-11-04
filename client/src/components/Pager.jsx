@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updatePage } from './../redux/actions.js';
+import { updatePage, ascProducts } from './../redux/actions.js';
 
 export default function Pager() {
   const dispatch = useDispatch();
@@ -15,20 +15,22 @@ export default function Pager() {
 
   return (
     products.length > 0 ? (
-      <nav aria-label="Page navigation example">
-        <ul className="pagination justify-content-center">
-          {
-            pages === 1 ? (
-              <li className="page-item"><button className="page-link">1</button></li>
-            ) : (
-              <React.Fragment>
-                <li className="page-item"><button className="page-link" onClick={ () => handleSetPage(1)}>1</button></li>
-                <li className="page-item"><button className="page-link" onClick={ () => handleSetPage(2)}>2</button></li>
-              </React.Fragment>
-            )
-          }
-        </ul>
-      </nav>
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination justify-content-center">
+            {
+              pages === 1 ? (
+                <li className="page-item"><button className="page-link">1</button></li>
+              ) : (
+                <React.Fragment>
+                  <li className="page-item"><button className="page-link" onClick={ () => handleSetPage(1)}>1</button></li>
+                  <li className="page-item"><button className="page-link" onClick={ () => handleSetPage(2)}>2</button></li>
+                </React.Fragment>
+              )
+            }
+          </ul>
+        </nav>
+      </div>
     ) : (
       <React.Fragment></React.Fragment>
     )
