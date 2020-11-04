@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const morgan = require('morgan');
 const fetch = require('node-fetch');
@@ -18,33 +19,41 @@ server.use((req, res, next) => {
 
 server.use(morgan('dev'));
 
+function cacheRequest(req, res, next) {
+  const { query } = req.query;
+  
+  if (cache.hasOwnProperty(query)) {
+    console.log(query,"is in the cache");
+    res.status(304).json(cache[query])
+  } else {
+    next();
+  }
+}
+
 // RUTAS
 
-server.get('/api/search', (req, res, next) => {
+server.get('/api/search', cacheRequest, (req, res, next) => {
   const { query } = req.query;
 
-  if (cache.hasOwnProperty(query)) {
-    res.status(304).json(cache[query]);
-  } else {
-    fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
-      .then(results => results.json())
-      .then(data => {
-        const products = data.results.map((e) => {
-          return {
-            title: e.title,
-            price: e.price,
-            money: e.currency_id,
-            image: e.thumbnail,
-            stock: e.available_quantity,
-            link: e.permalink,
-            condition: e.condition
-          }
-        });
-        cache[query] = products;
-        res.status(200).json(products);
-      })
-      .catch(err => res.send(err));
-  }
+  fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
+    .then(results => results.json())
+    .then(data => {
+      const products = data.results.map((e) => {
+        return {
+          title: e.title,
+          price: e.price,
+          money: e.currency_id,
+          image: e.thumbnail,
+          stock: e.available_quantity,
+          link: e.permalink,
+          condition: e.condition
+        }
+      });
+      cache[query] = products;
+      console.log(query, "was cached");
+      res.status(200).json(products);
+    })
+    .catch(err => res.send(err));
 });
 
 // FIN RUTAS
