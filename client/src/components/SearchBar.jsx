@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProducts, updateCiclo } from './../redux/actions.js';
+import { getProducts, updateCiclo, updatePage } from './../redux/actions.js';
 
 export default function SearchBar() {
   // DISPATCHER
@@ -17,6 +17,7 @@ export default function SearchBar() {
   function handleFetchQuery() {
     dispatch(updateCiclo(1));
     dispatch(getProducts(query));
+    dispatch(updatePage(1));
     setQuery('');
   }
 
