@@ -16,9 +16,6 @@ const initialState = {
 
   // Pagina a visualizar
   page: 1,
-
-  // Numero de paginas
-  pages: 0
 }
 
 export default function rootReducer(state = initialState, action = null) {
@@ -29,7 +26,6 @@ export default function rootReducer(state = initialState, action = null) {
         products: action.payload,
         catalog: action.payload,
         ciclo: 2,
-        pages: Math.ceil(action.payload.length / 30)
       };
     case 'UPDATE_CICLO':
       return {
@@ -59,12 +55,12 @@ export default function rootReducer(state = initialState, action = null) {
     case 'NEW_PRODUCTS':
       return {
         ...state,
-        catalog: state.products.filter((prod) => prod.condition === "new")
+        catalog: [...state.products.filter((prod) => prod.condition === "new")]
       }
     case 'USED_PRODUCTS':
       return {
         ...state,
-        catalog: state.products.filter((prod) => prod.condition === "used")
+        catalog: [...state.products.filter((prod) => prod.condition === "used")]
       }
     default:
       return state;
