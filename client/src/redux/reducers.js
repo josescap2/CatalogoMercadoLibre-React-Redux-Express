@@ -51,6 +51,21 @@ export default function rootReducer(state = initialState, action = null) {
         ...state,
         catalog: state.products.sort((curr, next) => curr.price - next.price)
       }
+    case 'DESC_PRODUCTS':
+      return {
+        ...state,
+        catalog: state.products.sort((curr, next) => next.price - curr.price)
+      }
+    case 'NEW_PRODUCTS':
+      return {
+        ...state,
+        catalog: state.products.filter((prod) => prod.condition === "new")
+      }
+    case 'USED_PRODUCTS':
+      return {
+        ...state,
+        catalog: state.products.filter((prod) => prod.condition === "used")
+      }
     default:
       return state;
   }

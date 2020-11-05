@@ -25,3 +25,15 @@ export function updatePage(number) {
 export function ascProducts() {
   return { type: "ASC_PRODUCTS", payload: null}
 }
+
+export function descProducts() {
+  return { type: "DESC_PRODUCTS", payload: null}
+}
+
+export function newProducts() {
+  return { type: "NEW_PRODUCTS", payload: null}
+}
+
+export function usedProducts() {
+  return { type: "USED_PRODUCTS", payload: null}
+}

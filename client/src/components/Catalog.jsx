@@ -19,7 +19,7 @@ export default function Catalog() {
             <span className="sr-only">Loading...</span>
           </div>
         ) : ciclo === 2 ? (
-          <div className="container my-5">
+          <div className="container my-1">
             <div className="row justify-content-md- row-cols-3" >
               {
                 catalog.map((product, index) => (

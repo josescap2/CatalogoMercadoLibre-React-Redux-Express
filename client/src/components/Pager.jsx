@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updatePage, ascProducts } from './../redux/actions.js';
+import { updatePage } from './../redux/actions.js';
 
 export default function Pager() {
   const dispatch = useDispatch();
