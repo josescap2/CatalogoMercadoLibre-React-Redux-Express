@@ -12,15 +12,15 @@ export default function Pager() {
   }
   
   function handleSetDesc() {
-    dispatch(ascProducts());
+    dispatch(descProducts());
   }
 
   function handleSetNew() {
-    dispatch(ascProducts());
+    dispatch(newProducts());
   }
 
   function handleSetUsed() {
-    dispatch(ascProducts());
+    dispatch(usedProducts());
   }
 
   return (
