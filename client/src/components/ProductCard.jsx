@@ -8,8 +8,8 @@ export default function ProductCard({product = {}}) {
         <h5 className="card-title">{product.title}</h5>
         <p className="card-text">Precio: {product.money} {product.price}</p>
         <p className="card-text">Disponible: {product.stock}</p>
-        <a href={product.link} target="_blank" className="btn btn-primary">Ver más</a>
-        <p className="card-text mt-3">{product.condition == "new" ? "(Nuevo)" : "(Usado)"}</p>
+        <a href={product.link} target="_blank" className="btn btn-primary" rel="noreferrer">Ver más</a>
+        <p className="card-text mt-3">{product.condition === "new" ? "(Nuevo)" : "(Usado)"}</p>
       </div>
     </div>
   );
