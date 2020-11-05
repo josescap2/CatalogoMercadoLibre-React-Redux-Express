@@ -6,20 +6,19 @@ export default function Pager() {
   const dispatch = useDispatch();
 
   const products = useSelector(state => state.products);
-  const pages = useSelector(state => state.pages);
-  const page = useSelector(state => state.page);
+  const catalog = useSelector(state => state.catalog);
   
   function handleSetPage(number) {
     dispatch(updatePage(number));
   }
 
   return (
-    products.length > 0 ? (
+    catalog.length > 0 ? (
       <div>
         <nav aria-label="Page navigation example">
           <ul className="pagination justify-content-center">
             {
-              pages === 1 ? (
+              catalog.length < 30 ? (
                 <li className="page-item"><button className="page-link">1</button></li>
               ) : (
                 <React.Fragment>
