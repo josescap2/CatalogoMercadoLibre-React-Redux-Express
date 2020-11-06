@@ -9,7 +9,7 @@ export function getProducts(query) {
         if (Array.isArray(data))
           dispatch({ type: "GET_CATALOGO", payload: data })
         else
-          dispatch({ type: "NO_RESULTS", payload: 3 });
+          dispatch({ type: "UPDATE_CICLO", payload: 3 });
       })
   }
 }

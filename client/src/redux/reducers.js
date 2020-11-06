@@ -32,11 +32,6 @@ export default function rootReducer(state = initialState, action = null) {
         ...state,
         ciclo: action.payload,
       };
-    case 'NO_RESULTS':
-      return {
-        ...state,
-        ciclo: action.payload
-      };
     case 'UPDATE_PAGE':
       return {
         ...state,
