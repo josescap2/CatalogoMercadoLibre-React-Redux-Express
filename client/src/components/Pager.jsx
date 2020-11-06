@@ -5,7 +5,6 @@ import { updatePage } from './../redux/actions.js';
 export default function Pager() {
   const dispatch = useDispatch();
 
-  const products = useSelector(state => state.products);
   const catalog = useSelector(state => state.catalog);
   
   function handleSetPage(number) {
